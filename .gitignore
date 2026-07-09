@@ -1,0 +1,14 @@
+# Secrets — never commit
+*.json
+!package.json
+.env
+.env.*
+*key*
+*token*
+*secret*
+credentials*
+
+# Junk
+__pycache__/
+*.log
+.DS_Store
