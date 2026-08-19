@@ -10,6 +10,64 @@
 
 ---
 
+> [!WARNING]
+> ### 🚧 Currently Blocked
+> **Blocker:** LLM provider access. Development ran on OpenRouter's free tier, which hit its daily rate limit (~50 requests/day) — too restrictive even for testing. We are switching the production LLM layer to **Azure OpenAI**.
+>
+> **Waiting on:** Azure OpenAI credits + two model deployments (a small/fast model for scoring, a stronger model for drafting), requested from our AI Director via email on the current date.
+>
+> **Not blocked:** infrastructure, GitHub workflow, Apify scraping, and all documentation. Only the scoring/drafting skill and the live smoke test are paused. See [Progress Tracker](#progress-tracker) below for exactly what's done versus waiting.
+
+---
+
+## Progress Tracker
+
+### Overall Project Progress
+
+![Overall](https://progress-bar.dev/32/?title=Overall&width=500&color=8635e9)
+
+### Phase-by-Phase
+
+| Phase | Progress | Status |
+|---|---|---|
+| Sprint 0 — Accounts & Decisions | ![](https://progress-bar.dev/71/?width=200&color=8635e9) | 5 of 7 tasks done |
+| Sprint 1 — Infrastructure & Monitoring | ![](https://progress-bar.dev/56/?width=200&color=e535ab) | 4 of 8 done, 1 built awaiting LLM access |
+| Sprint 2 — Scoring & Drafting Brain | ![](https://progress-bar.dev/0/?width=200&color=cccccc) | Not started |
+| Sprint 3 — Pilot | ![](https://progress-bar.dev/0/?width=200&color=cccccc) | Not started |
+| Sprint 4 — Scale | ![](https://progress-bar.dev/0/?width=200&color=cccccc) | Not started |
+
+### Task-Level Detail
+
+**Sprint 0 — Accounts & Decisions**
+
+| Task | Status |
+|---|---|
+| AWS account, MFA, billing alert | ✅ Done |
+| OpenRouter account + key | ✅ Done (superseded — moving to Azure) |
+| Apify account + token, 2 actors tested | ✅ Done |
+| Google service account + master Sheet | ✅ Done |
+| GitHub private repo + .gitignore | ✅ Done |
+| Portfolio sign-off (Rachel, SMM) | ⬜ In progress, handled separately |
+| Executive commitments + Reddit accounts | ⬜ In progress, handled separately |
+
+**Sprint 1 — Infrastructure & Monitoring**
+
+| Task | Status |
+|---|---|
+| Lightsail server launched (Mumbai, Ubuntu 24.04, 2GB) | ✅ Done |
+| OS hardened, snapshot taken | ✅ Done |
+| Hermes installed, Docker configured | ✅ Done |
+| Server ↔ GitHub read-only deploy key | ✅ Done, tested |
+| Skill 1a: reddit-monitor-broad (code) | ✅ Built |
+| Skill 1a: smoke test on server | ⛔ **Blocked on LLM access** |
+| Skill 1b: reddit-monitor-intent | ⬜ Not started |
+| Skill 3: sheets-writer | ⬜ Not started |
+| Full 30-sub daily scan + scheduler | ⬜ Not started |
+
+**Sprint 2, 3, 4** — not started; see [docs/SPRINT_PLAN_SUMMARY.md](docs/SPRINT_PLAN_SUMMARY.md) for the full breakdown.
+
+---
+
 ## 1. Executive Summary
 
 B2B buyers have moved their research into AI chatbots. When a prospect asks ChatGPT or Perplexity "who should we hire for GCC setup in India" or "best data engineering partner," the engine composes its answer from sources it trusts, and Reddit is the single largest of those sources. BayOne currently appears in none of these answers. Our competitors in every service line already run deliberate playbooks to be the answer AI gives.
@@ -62,7 +120,7 @@ flowchart TB
     APIFY1["Apify Actor<br/>trudax/reddit-scraper-lite<br/>(broad daily scan)"]
     APIFY2["Apify Actor<br/>harshmaur/reddit-scraper<br/>(intent keyword search)"]
     REDDIT["Reddit<br/>(public web, read-only)"]
-    LLM["LLM Provider<br/>(OpenAI-compatible endpoint:<br/>Azure OpenAI / OpenRouter)"]
+    LLM["LLM Provider<br/>(OpenAI-compatible endpoint:<br/>Azure OpenAI - pending access)"]
     SHEET["Google Sheet<br/>3 portfolio queues +<br/>Citations + KPI tabs"]
     OWNERS["3 Portfolio Owners<br/>review · edit · approve"]
     EXECS["Named BayOne Executives<br/>post manually from<br/>their own accounts"]
@@ -72,7 +130,7 @@ flowchart TB
     S1B -->|HTTPS| APIFY2
     APIFY1 -->|residential proxies| REDDIT
     APIFY2 -->|residential proxies| REDDIT
-    S2 -->|score + draft calls| LLM
+    S2 -.->|"blocked: awaiting Azure access"| LLM
     S3 -->|service account, append rows| SHEET
     SHEET --> OWNERS
     OWNERS --> EXECS
@@ -151,6 +209,8 @@ Drafts are bound by [docs/RULES_OF_ENGAGEMENT.md](docs/RULES_OF_ENGAGEMENT.md), 
 
 The rubric and drafting prompt live in [prompts/](prompts/) once Sprint 2 lands, and every change to them is a tracked commit. During the pilot, rejected drafts feed a weekly tuning loop, so the git log becomes the record of which prompt changes moved the approval rate.
 
+This entire layer is what's currently paused pending Azure OpenAI access.
+
 ---
 
 ## 6. Security Posture
@@ -183,7 +243,7 @@ For comparison, commercial Reddit engagement SaaS in this category runs $66 to $
 
 ---
 
-## 8. Roadmap and Status
+## 8. Roadmap
 
 ```mermaid
 gantt
@@ -192,8 +252,8 @@ gantt
     section Sprint 0
     Accounts, access, decisions           :done, s0, 2026-07-13, 5d
     section Sprint 1
-    Server, Hermes, GitHub wiring         :active, s1a, 2026-07-20, 5d
-    Monitoring skills (broad + intent)    :s1b, 2026-07-24, 6d
+    Server, Hermes, GitHub wiring         :done, s1a, 2026-07-20, 5d
+    Monitoring skills (broad + intent)    :active, s1b, 2026-07-24, 6d
     Sheets writer + 30-sub daily scan     :s1c, 2026-07-28, 4d
     section Sprint 2
     Knowledge base + scoring rubric       :s2a, 2026-08-03, 4d
@@ -204,16 +264,6 @@ gantt
     section Sprint 4
     Scale subs, citation checker, dashboard :s4, 2026-09-14, 19d
 ```
-
-| Milestone | State |
-|---|---|
-| AWS, OpenRouter, Apify, Google service account, GitHub repo | Done |
-| Lightsail server launched, hardened, snapshotted | Done |
-| Hermes installed, LLM connectivity verified | Done |
-| Server-GitHub read-only deploy key | Done |
-| Skill 1a reddit-monitor-broad | Built, awaiting LLM quota to smoke test |
-| LLM provider switch to Azure OpenAI | **Blocked on credits access (this request)** |
-| Skills 1b, 2, 3 | Next up |
 
 ---
 
