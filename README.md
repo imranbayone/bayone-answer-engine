@@ -22,19 +22,19 @@
 
 ## Progress Tracker
 
-### Overall Project Progress
+### Overall Project Progress — 32%
 
-![Overall](https://progress-bar.dev/32/?title=Overall&width=500&color=8635e9)
+![Overall](https://geps.dev/progress/32?dangerColor=8635e9&warningColor=8635e9&successColor=8635e9)
 
 ### Phase-by-Phase
 
 | Phase | Progress | Status |
 |---|---|---|
-| Sprint 0 — Accounts & Decisions | ![](https://progress-bar.dev/71/?width=200&color=8635e9) | 5 of 7 tasks done |
-| Sprint 1 — Infrastructure & Monitoring | ![](https://progress-bar.dev/56/?width=200&color=e535ab) | 4 of 8 done, 1 built awaiting LLM access |
-| Sprint 2 — Scoring & Drafting Brain | ![](https://progress-bar.dev/0/?width=200&color=cccccc) | Not started |
-| Sprint 3 — Pilot | ![](https://progress-bar.dev/0/?width=200&color=cccccc) | Not started |
-| Sprint 4 — Scale | ![](https://progress-bar.dev/0/?width=200&color=cccccc) | Not started |
+| Sprint 0 — Accounts & Decisions | ![71%](https://geps.dev/progress/71?dangerColor=8635e9&warningColor=8635e9&successColor=8635e9) | 5 of 7 tasks done |
+| Sprint 1 — Infrastructure & Monitoring | ![56%](https://geps.dev/progress/56?dangerColor=e535ab&warningColor=e535ab&successColor=e535ab) | 4 of 8 done, 1 built awaiting LLM access |
+| Sprint 2 — Scoring & Drafting Brain | ![0%](https://geps.dev/progress/0?dangerColor=cccccc&warningColor=cccccc&successColor=cccccc) | Not started |
+| Sprint 3 — Pilot | ![0%](https://geps.dev/progress/0?dangerColor=cccccc&warningColor=cccccc&successColor=cccccc) | Not started |
+| Sprint 4 — Scale | ![0%](https://geps.dev/progress/0?dangerColor=cccccc&warningColor=cccccc&successColor=cccccc) | Not started |
 
 ### Task-Level Detail
 
