@@ -14,7 +14,7 @@
 > ### 🚧 Currently Blocked
 > **Blocker:** LLM provider access. Development ran on OpenRouter's free tier, which hit its daily rate limit (~50 requests/day) — too restrictive even for testing. We are switching the production LLM layer to **Azure OpenAI**.
 >
-> **Waiting on:** Azure OpenAI credits + two model deployments (a small/fast model for scoring, a stronger model for drafting), requested from our AI Director via email on the current date.
+> **Waiting on:** Azure OpenAI credits + two model deployments (a small/fast model for scoring, a stronger model for drafting).
 >
 > **Not blocked:** infrastructure, GitHub workflow, Apify scraping, and all documentation. Only the scoring/drafting skill and the live smoke test are paused. See [Progress Tracker](#progress-tracker) below for exactly what's done versus waiting.
 
