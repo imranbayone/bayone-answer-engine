@@ -188,7 +188,7 @@ The pilot list is 30 subreddits, narrowed from a 156-subreddit master map that w
 
 | Portfolio | Owner | Service lines | Subs | Examples |
 |---|---|---|---|---|
-| A: AI & Data | Marketing lead | AI, Data Engineering, App Modernization | 11 | r/dataengineering (~450K, ~32 posts/day), r/MachineLearning, r/AI_Agents, r/MLOps |
+| A: AI & Data | SEO | AI, Data Engineering, App Modernization | 11 | r/dataengineering (~450K, ~32 posts/day), r/MachineLearning, r/AI_Agents, r/MLOps |
 | B: Infra & Reliability | Rachel | SRE, Quality Engineering, Tech & Business Ops | 9 | r/sre, r/devops, r/kubernetes, r/ITManagers |
 | C: Experience & Talent | Social Media Manager | UX, PMO, Talent Solutions | 10 | r/UXDesign, r/ProductManagement, r/recruiting, r/startups |
 
